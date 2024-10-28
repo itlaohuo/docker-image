@@ -1,7 +1,12 @@
-name: ci
+name: multi platform build debian-bookworm-slim image
 
 on:
-  push:
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 24 * *'  # At 05:30 on day-of-month 24.
 
 env:
   REGISTRY_IMAGE: itlaohuo/debian-slim
@@ -89,7 +94,7 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Create manifest list and push
