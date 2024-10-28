@@ -52,6 +52,8 @@ jobs:
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
+        run: |
+          cd debian-bookworm-slim
         with:
           # context: ./debian-bookworm-slim
           # file: ./debian-bookworm-slim/Dockerfile
