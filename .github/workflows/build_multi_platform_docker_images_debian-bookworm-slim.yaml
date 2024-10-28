@@ -27,6 +27,7 @@ jobs:
         run: |
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+          cd debian-bookworm-slim
       
       - name: Docker meta
         id: meta
@@ -50,8 +51,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: ./debian-bookworm-slim
-          file: ./debian-bookworm-slim/Dockerfile
+          # context: ./debian-bookworm-slim
+          # file: ./debian-bookworm-slim/Dockerfile
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
