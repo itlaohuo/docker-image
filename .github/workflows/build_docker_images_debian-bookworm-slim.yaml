@@ -35,7 +35,7 @@ jobs:
           context: ./debian-bookworm-slim
           file: ./debian-bookworm-slim/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/debian:bookworm-slim
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/debian:bookworm-slim
           platforms: ${{ matrix.platform }}
 
      
