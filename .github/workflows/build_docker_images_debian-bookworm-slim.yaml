@@ -12,12 +12,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        platform: [linux/amd64, linux/arm64, linux/arm/v7]  # 可支持的架构
-
+        platform:
+          - linux/amd64
+          - linux/arm/v7
+          - linux/arm64
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -34,9 +40,9 @@ jobs:
         with:
           context: ./debian-bookworm-slim
           file: ./debian-bookworm-slim/Dockerfile
+          platforms: ${{ matrix.platform }}
           push: true
           tags: | 
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/debian:bookworm-slim
-          platforms: ${{ matrix.platform }}
 
      
