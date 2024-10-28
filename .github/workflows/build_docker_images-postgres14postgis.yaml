@@ -82,8 +82,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: .
-          file: ./alpine.Dockerfile
+          context: ./postgis
+          file: ./postgis/alpine.Dockerfile
           platforms: linux/arm/v7
           pull: true
           push: true
