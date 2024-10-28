@@ -1,5 +1,5 @@
 # 使用 debian-slim 作为基础镜像
-FROM debian:book-slim
+FROM debian:bookworm-slim
 
 # 设置环境变量
 ENV LANG=zh_CN.UTF-8 \
