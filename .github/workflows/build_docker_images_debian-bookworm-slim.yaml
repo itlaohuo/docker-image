@@ -40,7 +40,7 @@ jobs:
         with:
           context: ./debian-bookworm-slim
           file: ./debian-bookworm-slim/Dockerfile
-          platforms: ${{ matrix.platform }}
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           tags: | 
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/debian:bookworm-slim

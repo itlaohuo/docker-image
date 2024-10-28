@@ -19,7 +19,6 @@ jobs:
       matrix:
         platform:
           - linux/amd64
-          - linux/arm/v6
           - linux/arm/v7
           - linux/arm64
     steps:
@@ -52,8 +51,6 @@ jobs:
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
-        run: |
-          cd debian-bookworm-slim
         with:
           # context: ./debian-bookworm-slim
           # file: ./debian-bookworm-slim/Dockerfile
