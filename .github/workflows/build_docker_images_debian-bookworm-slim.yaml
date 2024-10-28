@@ -20,14 +20,14 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push image debian-bookworm-slim
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./debian-bookworm-slim
           file: ./debian-bookworm-slim/Dockerfile
@@ -35,11 +35,4 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/debian:bookworm-slim
           platforms: ${{ matrix.platform }}
 
-      # - name: Build and push image 2
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: ./docker-image-2
-      #     file: ./docker-image-2/Dockerfile
-      #     push: true
-      #     tags: your-dockerhub-username/image2:latest
-      #     platforms: ${{ matrix.platform }}
+     
